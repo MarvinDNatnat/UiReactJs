@@ -1,0 +1,58 @@
+// Here you can add other styles
+.bgwhite {
+    background-color:rgba(204, 204, 204, 0.4);
+    box-shadow: 0 2px 0 0 #ccc;
+}
+.btn-custom{
+    display: inline-block;
+    font-family: $btn-font-family;
+    font-weight: $btn-font-weight;
+    color: $body-color;
+    text-align: center;
+    text-decoration: if($link-decoration == none, null, none);
+    white-space: $btn-white-space;
+    vertical-align: middle;
+    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+    user-select: none;
+    background-color: transparent;
+    // border: $btn-border-width solid transparent;
+    border: none;
+    @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+    @include transition($btn-transition);
+
+    @include hover() {
+        color: $body-color;
+        text-decoration: none;
+    }
+    &:focus,
+    &.focus {
+        outline: none;
+        // box-shadow: $btn-focus-box-shadow;
+    }
+
+    // Disabled comes first so active can properly restyle
+    &.disabled,
+    &:disabled {
+        opacity: $btn-disabled-opacity;
+        @include box-shadow(none);
+    }
+
+    &:not(:disabled):not(.disabled) {
+        cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+
+        &:active,
+        &.active {
+        @include box-shadow($btn-active-box-shadow);
+
+        &:focus {
+            @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+        }
+        }
+    }
+
+    i,
+    .c-icon {
+        height: $btn-font-size;
+        margin: ((($font-size-base * $line-height-base) - $font-size-base) / 2) 0;
+      }
+}
